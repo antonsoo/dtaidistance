@@ -99,7 +99,7 @@ def dba_loop(s, c=None, max_it=10, thr=0.001, mask=None,
     if c is None:
         if nb_initial_samples is None:
             curi = 0
-            while mask[curi] is False:
+            while not mask[curi]:
                 curi += 1
             c = s[curi]
         else:
@@ -200,7 +200,7 @@ def dba(s, c, mask=None, samples=None, use_c=False, nb_initial_samples=None, **k
     if c is None:
         if nb_initial_samples is None:
             curi = 0
-            while mask[curi] is False:
+            while not mask[curi]:
                 curi += 1
             c = s[curi]
         else:
