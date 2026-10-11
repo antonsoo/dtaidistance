@@ -369,6 +369,15 @@ def test_barycenter_initialization_mask(use_c, ndim, loop):
 
 
 @numpyonly
+@pytest.mark.parametrize("use_c", [False, True])
+def test_barycenter_initialization_empty_mask(use_c):
+    with util_numpy.test_uses_numpy() as np:
+        series = [np.array([1., 2., 3.]), np.array([4., 5.])]
+        result = dba_loop(series, mask=np.zeros(2, dtype=bool), use_c=use_c)
+        np.testing.assert_array_equal(result, np.zeros(3))
+
+
+@numpyonly
 def test_barycenter():
     with util_numpy.test_uses_numpy() as np:
         series = np.array(
